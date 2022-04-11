@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #navBar{
+            display: flex;
+            justify-content: space-evenly;
+            gap: auto;
+            box-shadow: rgba(19, 18, 18, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+        #navBar a{
+            
+        text-decoration: none;
+        color: rgb(0, 128, 100);
+        font-weight: 700;
+        font-size: 25px;
+        }
+        table{
+            margin: 5% auto;
+            width: 60%;
+            /* border: 1px solid black; */
+        }
+        table, td, th{
+             border: 1px solid black;
+        }
+        td, th{
+            padding: 5px 20px;
+        }
+        th{
+            background-color: blue;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar">
+        <div><a href="./index.html">Home</a></div>
+        <div><a href="./conntactList.html">Contact List</a></div>
+        <div><a href="./favourites.html">Favourites</a></div>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Type</th>
+                    <th>Favourite</th>
+                </tr>
+            </thead>
+            <tbody id="tBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let contact = JSON.parse(localStorage.getItem("ContactList"));
+
+        function showContact(contact){
+            document.querySelector("tbody").innerHTML = "";
+            contact.forEach(contact => {
+                let row = document.createElement("tr");
+
+                let t1 = document.createElement("td");
+                 t1.innerText = contact.name;
+                let t2 = document.createElement("td");
+                t2.innerText = contact.number;
+                let t3 = document.createElement("td");
+                t3.innerText = contact.type;
+                let t4 = document.createElement("td");
+                t4.innerText = "Favouritie";
+                row.append(t1,t2,t3,t4);
+                // console.log(row)
+                console.log(contact)
+                document.querySelector("tbody").append(row);
+            });
+        }
+        showContact(contact);
+
+    </script>
+</body>
+
+</html>
